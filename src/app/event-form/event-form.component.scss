@@ -1,0 +1,28 @@
+.event-form input {
+  width:100%;
+}
+
+.form-container {
+  display: flex;
+  width:100%;
+  flex-direction: column;
+}
+
+.form-item {
+  width: 100%;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+
+
+.text-area-height {
+  min-height: 2rem;
+}
