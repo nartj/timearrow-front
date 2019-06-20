@@ -13,8 +13,11 @@
     </button>
   </mat-drawer>
 
+  
   <div class="example-sidenav-content">
-    <app-timeline #timeline [drawer]="drawer" (eventToEdit)="editSelectedEvent($event)" class="timeline"></app-timeline>
+    <app-timeline #timeline [drawer]="drawer" (eventToEdit)="editSelectedEvent($event)" class="timeline">
+    </app-timeline>
   </div>
+
 </mat-drawer-container>
 

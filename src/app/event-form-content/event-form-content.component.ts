@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Event } from '../model/event';
 
 @Component({
@@ -9,8 +9,11 @@ import { Event } from '../model/event';
 export class EventFormContentComponent implements OnInit {
 
   @Input() event: Event;
+  @Output() editEvent = new EventEmitter<Event>();
 
-  constructor() { }
+  constructor() { 
+
+  }
 
   ngOnInit() {
   }
