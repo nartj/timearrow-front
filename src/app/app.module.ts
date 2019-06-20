@@ -16,6 +16,7 @@ import { EventFormComponent } from './event-form/event-form.component';
 import { EventFormContentComponent } from './event-form-content/event-form-content.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MaterialModule } from './material.module';
+import { TimelineFormComponent } from './timeline-form/timeline-form.component';
 
 import {
   MatToolbarModule,
@@ -48,6 +49,7 @@ import {SafePipe} from './helper/url-safe.pipe';
     EventFormComponent,
     EventFormContentComponent,
     SidebarComponent,
+    TimelineFormComponent,
     UnshiftEventButtonComponent,
     SafePipe
   ],
