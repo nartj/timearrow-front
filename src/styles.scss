@@ -1,3 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*
+Make timeline content full page
+ */
+.mat-drawer-content {
+  min-height: -webkit-fill-available;
+}
+
+mat-form-field{
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.mat-form-field-label-wrapper label{
+  font-size: 1em;
+}
+
+/*
+Material theme
+ */
+
 @import '~@angular/material/theming';
 @import '~angular-mgl-timeline/theme';
 // Include the common styles for Angular Material. We include this here so that you only

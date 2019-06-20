@@ -14,3 +14,26 @@
 .example-sidenav {
   padding: 20px;
 }
+
+.button-bar {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  position: absolute;
+  top: 14%;
+}
+
+.button-bar-item {
+  right: 2%;
+}
+
+.date-display {
+  float: left;
+  margin-left: 5%;
+  margin-top: 2.5%;
+}
+
+.titre {
+  font-size: 1.3em;
+  font-weight: bold;
+}

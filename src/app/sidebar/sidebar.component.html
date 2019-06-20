@@ -1,22 +1,20 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <app-event-form></app-event-form>
-    <p *ngIf="showFiller"><app-event-form-content></app-event-form-content></p>
+    <div class="close-sidebar">
+      <button mat-button class="button-bar-item" (click)="timeline.closeSideBar(-1)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <app-event-form [event]="currentEvent"></app-event-form>
+    <p *ngIf="showFiller"><app-event-form-content [event]="currentEvent"></app-event-form-content></p>
     <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
+      Ecrire du contenu
     </button>
   </mat-drawer>
 
   <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
-    <app-timeline></app-timeline>
+    <app-timeline #timeline [drawer]="drawer" (eventToEdit)="editSelectedEvent($event)" class="timeline"></app-timeline>
   </div>
-
 </mat-drawer-container>
 
-
-<!-- Copyright 2019 Google Inc. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license -->

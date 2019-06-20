@@ -5,17 +5,17 @@ import { MglTimelineModule } from 'angular-mgl-timeline';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule} from './material-module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AppComponent } from './app.component';
-import { TimelineComponent } from './timeline/timeline.component';
-import { EventComponent } from './event/event.component';
-import { TopicComponent } from './topic/topic.component';
 import { TopicFormComponent } from './topic-form/topic-form.component';
-import { EventFormComponent } from './event-form/event-form.component';
 import { TimelineFormComponent } from './timeline-form/timeline-form.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { TimelineComponent } from './timeline/timeline.component';
+import { TopicComponent } from './topic/topic.component';
+import { EventComponent } from './event/event.component';
+import { EventFormComponent } from './event-form/event-form.component';
 import { EventFormContentComponent } from './event-form-content/event-form-content.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { MaterialModule } from './material.module';
 
 import {
   MatToolbarModule,
@@ -28,6 +28,9 @@ import {
   MatRadioModule
 } from '@angular/material';
 
+import { UnshiftEventButtonComponent } from './unshift-event-button/unshift-event-button.component';
+import {SafePipe} from './helper/url-safe.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +42,14 @@ import {
     EventFormComponent,
     TimelineFormComponent,
     SidebarComponent,
-    EventFormContentComponent
+    EventFormContentComponent,
+    TopicComponent,
+    EventComponent,
+    EventFormComponent,
+    EventFormContentComponent,
+    SidebarComponent,
+    UnshiftEventButtonComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

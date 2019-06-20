@@ -1,3 +1,14 @@
+<!-- Visualisation d'une "carte" évènement sur le frise -->
+
+<div>
+  <!-- embedded image viewer -->
+  <img class="rounded-img" src={{event.image}}>
+  <div class="resume">{{event.resume}}</div>
+</div>
+
+<!-- embedded video viewer -->
 <p>
-  event works!
+  <iframe
+          [src]="event.video | safe" [frameBorder]="0" allowfullscreen>
+  </iframe>
 </p>

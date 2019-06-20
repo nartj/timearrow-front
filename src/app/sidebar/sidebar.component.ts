@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Event} from '../model/event';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
 
   showFiller = false;
+  currentEvent: Event = new Event('', '', '', '', '');
   constructor() { }
 
   ngOnInit() {
   }
 
+  editSelectedEvent($event) {
+    this.currentEvent = $event;
+  }
 }

@@ -1,5 +1,6 @@
 .example-container {
   min-height: -webkit-fill-available;
+  top: 70px;
 }
 
 .example-sidenav-content {
@@ -10,4 +11,17 @@
   padding: 20px;
   min-width: 30%;
   max-width: 50%;
+}
+
+.timeline {
+  min-height: -webkit-fill-available;
+}
+
+.mat-drawer {
+  position: fixed;
+  top: 8%;
+}
+
+.close-sidebar {
+  float: right;
 }
