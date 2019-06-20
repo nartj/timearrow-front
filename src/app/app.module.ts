@@ -8,7 +8,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AppComponent } from './app.component';
 import { TopicFormComponent } from './topic-form/topic-form.component';
-import { TimelineFormComponent } from './timeline-form/timeline-form.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { TopicComponent } from './topic/topic.component';
 import { EventComponent } from './event/event.component';
@@ -21,6 +20,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http'; 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { JwtModule } from '@auth0/angular-jwt';
+import { TimelineFormComponent } from './timeline-form/timeline-form.component';
 
 import {
   MatToolbarModule,
@@ -56,6 +56,7 @@ import { LoginComponent } from './login/login.component';
     EventFormComponent,
     EventFormContentComponent,
     SidebarComponent,
+    TimelineFormComponent,
     UnshiftEventButtonComponent,
     SafePipe,
     RegisterComponent,
