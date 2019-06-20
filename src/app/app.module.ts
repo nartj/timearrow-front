@@ -20,6 +20,7 @@ import { NgxEditorModule } from 'ngx-editor';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http'; 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import {
   MatToolbarModule,
@@ -34,6 +35,9 @@ import {
 
 import { UnshiftEventButtonComponent } from './unshift-event-button/unshift-event-button.component';
 import {SafePipe} from './helper/url-safe.pipe';
+import { RegisterComponent } from './register';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +57,10 @@ import {SafePipe} from './helper/url-safe.pipe';
     EventFormContentComponent,
     SidebarComponent,
     UnshiftEventButtonComponent,
-    SafePipe
+    SafePipe,
+    RegisterComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +82,16 @@ import {SafePipe} from './helper/url-safe.pipe';
     NgxEditorModule,
     AngularFontAwesomeModule,
     HttpClientModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: function tokenGetter() {
+          return localStorage.getItem('access_token');
+        },
+        whitelistedDomains: ['localhost:81', 'localhost:4200'],
+        blacklistedRoutes: ['http://localhost:81/auth/login']
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

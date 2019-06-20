@@ -18,4 +18,8 @@ export class EventFormContentComponent implements OnInit {
   ngOnInit() {
   }
 
+  onContentChange() {
+    this.editEvent.emit(this.event);
+  }
+
 }
