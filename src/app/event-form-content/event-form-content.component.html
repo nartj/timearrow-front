@@ -1,13 +1,5 @@
 <form class="example-form">
   <p>
-    <mat-form-field class="example-full-width text-area-height">
-      <textarea matInput
-                placeholder="Description"
-                cdkTextareaAutosize
-                cdkAutosizeMinRows="10"
-                cdkAutosizeMaxRows="20"
-                value={{event.content}}></textarea>
-    </mat-form-field>
+    <app-ngx-editor [(ngModel)]="event.content" name="ngxeditor" (ngModelChange)="onContentChange(event)"></app-ngx-editor>
   </p>
 </form>
-

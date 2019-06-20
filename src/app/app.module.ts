@@ -16,6 +16,10 @@ import { EventFormComponent } from './event-form/event-form.component';
 import { EventFormContentComponent } from './event-form-content/event-form-content.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MaterialModule } from './material.module';
+import { NgxEditorModule } from 'ngx-editor';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { HttpClientModule } from '@angular/common/http'; 
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import {
   MatToolbarModule,
@@ -67,7 +71,11 @@ import {SafePipe} from './helper/url-safe.pipe';
     MatCheckboxModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    NgxEditorModule,
+    AngularFontAwesomeModule,
+    HttpClientModule,
+    TooltipModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
