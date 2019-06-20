@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { JwtModule } from '@auth0/angular-jwt';
+import { JwtService } from '../jwt.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +12,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
+  public get loggedIn(): boolean{
+    return localStorage.getItem('access_token') !==  null;
+  }
+
+
+  public logout(){
+    localStorage.removeItem('access_token');
+    this.router.navigate(['/']);
+  }
 }

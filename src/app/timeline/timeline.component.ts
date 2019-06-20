@@ -128,4 +128,9 @@ export class TimelineComponent implements OnInit {
       this.editedIndex = index;
     }
   }
+
+  public get loggedIn(): boolean{
+    return localStorage.getItem('access_token') !==  null;
+  }
+
 }

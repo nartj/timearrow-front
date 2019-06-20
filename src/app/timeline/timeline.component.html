@@ -25,7 +25,7 @@
           <mgl-timeline-entry-header (click)="onHeaderClick($event)">
             <div>
               <!-- Bouton d'édition d'un évènement sur une carte évènement -->
-              <div class="row button-bar">
+              <div *ngIf="loggedIn==true" class="row button-bar">
                 <button mat-button class="button-bar-item" (click)="edit(i)"><mat-icon>edit</mat-icon></button>
               </div>
               <div class="title">{{entry.title}}</div>

@@ -1,5 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {Event} from '../model/event';
+import { EventFormComponent } from '../event-form/event-form.component';
+import { EventFormContentComponent } from '../event-form-content/event-form-content.component';
 
 @Component({
   selector: 'app-sidebar',
