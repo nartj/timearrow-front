@@ -7,7 +7,6 @@ import { Event } from '../model/event';
   styleUrls: ['./event.component.scss']
 })
 export class EventComponent implements OnInit {
-
   @Input() event: Event;
 
   constructor() { }

@@ -1,3 +1,36 @@
-<p>
-  topic-form works!
-</p>
+<div class="container">
+  <div class="topic-form-container">
+    <form class="topic-form">
+      <mat-form-field class="input-full-width">
+        <input matInput required  [(ngModel)]="topic.title" name="title">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="pickerBeginDate" placeholder="Date de début" [(ngModel)]="topic.from" name="from">
+        <mat-datepicker-toggle matSuffix [for]="pickerBeginDate"></mat-datepicker-toggle>
+        <mat-datepicker #pickerBeginDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="pickerEndDate" placeholder="Date de fin" [(ngModel)]="topic.to" name="to">
+        <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+        <mat-datepicker #pickerEndDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="input-full-width">
+        <input matInput required [(ngModel)]="topic.resume" name="resume">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="topics" [formControl]="topics" multiple>
+          <mat-select-trigger>
+            {{topics.value ? topics.value[0] : ''}}
+            <span *ngIf="topics.value?.length > 1" class="example-additional-selection">
+        (+{{topics.value.length - 1}} {{topics.value?.length === 2 ? 'other' : 'others'}})
+      </span>
+          </mat-select-trigger>
+          <mat-option *ngFor="let topic of topic.topics" [value]="topic">{{topic.libelle}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Event } from '../model/event';
+import {Component, Input, OnInit} from '@angular/core';
+import {Event} from '../model/event';
 
 @Component({
   selector: 'app-event-form-content',
@@ -7,13 +7,8 @@ import { Event } from '../model/event';
   styleUrls: ['./event-form-content.component.scss']
 })
 export class EventFormContentComponent implements OnInit {
-
   @Input() event: Event;
-  @Output() editEvent = new EventEmitter<Event>();
-
-  constructor() { 
-
-  }
+  constructor() { }
 
   ngOnInit() {
   }

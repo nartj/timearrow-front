@@ -1,5 +1,8 @@
 <div class="row">
   <div class="col-sm-12">
+    <div style="position: fixed; top:100px;">
+      {{entries.length}}
+    </div>
     <!-- Barre de visualisation des topics de la timeline -->
     <app-topic></app-topic>
 
@@ -9,7 +12,14 @@
     ></app-unshift-event-button>
 
     <!-- Composant de visualisation d'une Timeline -->
-    <mgl-timeline [toggle]="toggle" [alternate]="alternate" [side]="side">
+
+    <mgl-timeline [toggle]="toggle" [alternate]="alternate" [side]="side"
+                  class="search-results"
+                  infiniteScroll
+                  [infiniteScrollDistance]="2"
+                  [infiniteScrollUpDistance]="1.5"
+                  [infiniteScrollThrottle]="500"  
+                  (scrolled)="onScrollDown()">
         <!-- Parcours des évènements d'un timeline -->
         <mgl-timeline-entry *ngFor="let entry of sortedArray; let i = index;" (expand)="onExpandEntry($event, i)">
 
@@ -25,7 +35,7 @@
           <mgl-timeline-entry-header (click)="onHeaderClick($event)">
             <div>
               <!-- Bouton d'édition d'un évènement sur une carte évènement -->
-              <div *ngIf="loggedIn==true" class="row button-bar">
+              <div class="row button-bar">
                 <button mat-button class="button-bar-item" (click)="edit(i)"><mat-icon>edit</mat-icon></button>
               </div>
               <div class="title">{{entry.title}}</div>

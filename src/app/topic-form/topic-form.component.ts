@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Topic } from '../model/topic';
 
 @Component({
   selector: 'app-topic-form',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopicFormComponent implements OnInit {
 
+  topic: Topic;
+
   constructor() { }
 
   ngOnInit() {
+    this.topic = new Topic('aze', 'azeaze', '#aze');
   }
 
 }

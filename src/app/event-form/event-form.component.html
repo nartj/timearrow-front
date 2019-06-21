@@ -53,7 +53,9 @@
             cdkAutosizeMinRows="2"
             cdkAutosizeMaxRows="20"
             [(ngModel)]="event.video"
+            (ngModelChange)="linkSanitizer()"
   ></textarea>
 </mat-form-field>
+
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JwtService } from '../jwt.service';
+import { JwtService } from '../services/jwt/jwt.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private jwtService: JwtService
   ) {
-    if (this.jwtService.loggedIn) { 
+    if (this.jwtService.loggedIn) {
       this.router.navigate(['/']);
     }
    }

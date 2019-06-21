@@ -1,7 +1,3 @@
-/*
-Modèle d'un composant
- */
-
 export class Event {
   title: string;
   resume: string;

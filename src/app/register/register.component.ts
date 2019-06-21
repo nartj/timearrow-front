@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JwtService } from '../jwt.service';
+import { JwtService } from '../services/jwt/jwt.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -11,11 +11,11 @@ import { first } from 'rxjs/operators';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  email:string;
-  username:string;
-  firstname:string;
-  lastname:string;
-  password:string;
+  email: string;
+  username: string;
+  firstname: string;
+  lastname: string;
+  password: string;
   loading = false;
   submitted = false;
 
@@ -23,16 +23,18 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private jwtService: JwtService
-  ) { 
+  ) {
     // redirect to home if already logged in
-    if (this.jwtService.loggedIn) { 
+    if (this.jwtService.loggedIn) {
       this.router.navigate(['/']);
-    }    
+    }
   }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
       username: ['', Validators.required],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -51,16 +53,16 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    //assign forms values to variables
-    this.email = this.registerForm.controls['email'].value;
-    this.username = this.registerForm.controls["username"].value;
-    this.firstname = this.registerForm.controls["firstname"].value;
-    this.lastname = this.registerForm.controls["lastname"].value;
-    this.password = this.registerForm.controls["password"].value;
+    // assign forms values to variables
+    this.email = this.registerForm.controls.email.value;
+    this.username = this.registerForm.controls.username.value;
+    this.firstname = this.registerForm.controls.firstname.value;
+    this.lastname = this.registerForm.controls.lastname.value;
+    this.password = this.registerForm.controls.password.value;
 
-    //send register request
+    // send register request
     this.loading = true;
-     await this.jwtService.register(this.email, this.username, this.password, this.firstname, this.lastname)
+    await this.jwtService.register(this.email, this.username, this.password, this.firstname, this.lastname)
       .pipe(first())
       .subscribe(
         data => {
@@ -71,7 +73,7 @@ export class RegisterComponent implements OnInit {
             this.loading = false;
         });
 
-    
+
 
 
   }

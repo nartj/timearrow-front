@@ -1,6 +1,6 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Event} from '../model/event';
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @Component({
   selector: 'app-timeline',
@@ -8,7 +8,6 @@ import {Event} from '../model/event';
   styleUrls: ['./timeline.component.scss']
 })
 export class TimelineComponent implements OnInit {
-
   /* Configuration des options graphiques de la Timeline */
   alternate = true;
   toggle = true;
@@ -24,6 +23,8 @@ export class TimelineComponent implements OnInit {
   editedIndex = -2;
   sideToggled = false;
   stopPropagation = false;
+  repoEntries = [];
+  offset = 0;
 
   /* Passage de l'évènement à éditer à la Sidebar */
   @Output() eventToEdit = new EventEmitter<Event>();
@@ -43,6 +44,10 @@ export class TimelineComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    /* Event repository mock */
+    for (let i = 0; i < 200; i++) {
+      this.repoEntries.push(new Event(i, '', '', '', ''));
+    }
   }
 
   /* Fonction de tri des évènements par dates*/
@@ -129,8 +134,15 @@ export class TimelineComponent implements OnInit {
     }
   }
 
-  public get loggedIn(): boolean{
-    return localStorage.getItem('access_token') !==  null;
+  /* Trigger de l'event scroll down */
+  onScrollDown() {
+    const initialLength = this.entries.length;
+    if (initialLength <= this.repoEntries.length - 20) {
+      for (let i = initialLength; i < initialLength + 20; i++) {
+        /* Utilisation du repository mocké */
+        /* Sera remplacé par un call back-end pour query la page d'events suivantes */
+        this.entries.push(this.repoEntries[i]);
+      }
+    }
   }
-
 }

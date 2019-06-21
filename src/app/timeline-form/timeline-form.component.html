@@ -1,44 +1,38 @@
-    <div class="container">
-        <h1>Timeline Form</h1>
-        <form>
+<div class="container">
+  <div class="timeline-form-container">
+    <form class="timeline-form">
+      <mat-form-field class="input-full-width">
+        <input matInput required [(ngModel)]="timeline.title" name="title">
+      </mat-form-field>
 
-          <div class="form-group">
-            <label for="title">title</label>
-            <input type="text" class="form-control" id="title" required  [(ngModel)]="model.title" name="title">
-          </div>
-     
-          <div class="form-group">
-            <label for="from">from</label>
-            <input type="date" class="form-control" id="from" required  [(ngModel)]="model.from" name="from">
-          </div>
-     
-	 <div class="form-group">
-            <label for="to">to</label>
-            <input type="date" class="form-control" id="to" required  [(ngModel)]="model.to" name="to">
-          </div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="pickerBeginDate" placeholder="Date de début" [(ngModel)]="timeline.from"
+               name="from">
+        <mat-datepicker-toggle matSuffix [for]="pickerBeginDate"></mat-datepicker-toggle>
+        <mat-datepicker #pickerBeginDate></mat-datepicker>
+      </mat-form-field>
 
-	  <div class="form-group">
-            <label for="resume">resume</label>
-            <input type="text" class="form-control" id="resume" required  [(ngModel)]="model.resume" name="resume">
-          </div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="pickerEndDate" placeholder="Date de fin" [(ngModel)]="timeline.to" name="to">
+        <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+        <mat-datepicker #pickerEndDate></mat-datepicker>
+      </mat-form-field>
 
-	 <div class="form-group">
-            <label for="topics">topics</label>
-            <input type="text" class="form-control" id="topics" required  [(ngModel)]="model.topics" name="topics">
-          </div>
+      <mat-form-field class="input-full-width">
+        <input matInput required [(ngModel)]="timeline.resume" name="resume">
+      </mat-form-field>
 
-	  <div class="form-group">
-            <label for="contributions">contributions</label>
-            <input type="text" class="form-control" id="contributions" required  [(ngModel)]="model.contributions" name="contributions">
-          </div>
-
-	  <div class="form-group">
-            <label for="events">events</label>
-            <input type="text" class="form-control" id="events" required  [(ngModel)]="model.events" name="events">
-          </div>
-
-
-          <button type="submit" class="btn btn-success">Submit</button>
-     
-        </form>
-    </div>
+      <mat-form-field>
+        <mat-select placeholder="topics" [formControl]="topics" multiple>
+          <mat-select-trigger>
+            {{topics.value ? topics.value[0] : ''}}
+            <span *ngIf="topics.value?.length > 1" class="example-additional-selection">
+        (+{{topics.value.length - 1}} {{topics.value?.length === 2 ? 'other' : 'others'}})
+      </span>
+          </mat-select-trigger>
+          <mat-option *ngFor="let topic of timeline.topics" [value]="topic">{{topic.libelle}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+</div>

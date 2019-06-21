@@ -1,3 +1,4 @@
+<!-- Sidebar d'édition d'un évènement -->
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <div class="close-sidebar">
@@ -13,11 +14,7 @@
     </button>
   </mat-drawer>
 
-  
   <div class="example-sidenav-content">
-    <app-timeline #timeline [drawer]="drawer" (eventToEdit)="editSelectedEvent($event)" class="timeline">
-    </app-timeline>
+    <app-timeline #timeline [drawer]="drawer" (eventToEdit)="editSelectedEvent($event)" class="timeline"></app-timeline>
   </div>
-
 </mat-drawer-container>
-

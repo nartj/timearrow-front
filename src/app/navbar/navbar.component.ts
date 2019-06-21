@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { JwtModule } from '@auth0/angular-jwt';
-import { JwtService } from '../jwt.service';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 

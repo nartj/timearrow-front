@@ -1,24 +1,24 @@
 <!-- navbar.component.html -->
 <nav class="navbar">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" routerLink="/home">TIMEARROW</a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-               
-                <!-- Browse timelines -->
-                <li><a href="javascript:void(0);" data-close="true">Browse Timelines</a></li>
-                
-                <!-- Register -->
-                <li *ngIf="loggedIn==false"><a routerLink="/register/" data-close="true">Register</a></li>
-
-                <!-- Login -->
-                <li *ngIf="loggedIn==false"><a routerLink="/login/" data-close="true">Login</a></li>
-
-                <!-- Log Out-->
-                <li *ngIf="loggedIn==true"class="pull-right"><a role="button" (click)="logout()" class="js-right-sidebar" data-close="true">Log out</a></li>
-            </ul>
-        </div>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/home">TIMEARROW</a>
     </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+
+        <!-- Browse timelines -->
+        <li><a routerLink="/timelines/" data-close="true">Browse Timelines</a></li>
+
+        <!-- Register -->
+        <li *ngIf="loggedIn==false"><a routerLink="/register/" data-close="true">Register</a></li>
+
+        <!-- Login -->
+        <li *ngIf="loggedIn==false"><a routerLink="/login/" data-close="true">Login</a></li>
+
+        <!-- Log Out-->
+        <li *ngIf="loggedIn==true"class="pull-right"><a role="button" (click)="logout()" class="js-right-sidebar" data-close="true">Log out</a></li>
+      </ul>
+    </div>
+  </div>
 </nav>
