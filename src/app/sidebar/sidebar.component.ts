@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Event} from '../model/event';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-sidebar',
@@ -8,13 +9,11 @@ import {Event} from '../model/event';
 })
 export class SidebarComponent implements OnInit {
   showFiller = false;
-  currentEvent: Event = new Event('', '', '', '', '');
-  constructor() { }
+  currentEvent: Event = new Event(null, '', '', '', '', '', this.route.snapshot.paramMap.get('id') as any as number);
 
-  ngOnInit() {
+  constructor(private route: ActivatedRoute) {
   }
 
-  editSelectedEvent($event) {
-    this.currentEvent = $event;
+  ngOnInit() {
   }
 }

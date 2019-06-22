@@ -20,7 +20,7 @@
 <!--  Date de début -->
 <div class="form-item">
   <mat-form-field>
-    <input matInput [matDatepicker]="pickerBeginDate" placeholder="Date de début" [(ngModel)]="event.beginDate">
+    <input matInput [matDatepicker]="pickerBeginDate" placeholder="Date de début" [(ngModel)]="event.from">
     <mat-datepicker-toggle matSuffix [for]="pickerBeginDate"></mat-datepicker-toggle>
     <mat-datepicker #pickerBeginDate></mat-datepicker>
   </mat-form-field>
@@ -29,7 +29,7 @@
 <!--  Date de fin -->
 <div class="form-item">
   <mat-form-field>
-    <input matInput [matDatepicker]="pickerEndDate" placeholder="Date de fin" [(ngModel)]="event.endDate">
+    <input matInput [matDatepicker]="pickerEndDate" placeholder="Date de fin" [(ngModel)]="event.to">
     <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
     <mat-datepicker #pickerEndDate></mat-datepicker>
   </mat-form-field>
@@ -56,6 +56,8 @@
             (ngModelChange)="linkSanitizer()"
   ></textarea>
 </mat-form-field>
+
+<button md-button class="submit-btn" type="button">Enregistrer</button>
 
 
 

@@ -18,7 +18,7 @@
                   infiniteScroll
                   [infiniteScrollDistance]="2"
                   [infiniteScrollUpDistance]="1.5"
-                  [infiniteScrollThrottle]="500"  
+                  [infiniteScrollThrottle]="500"
                   (scrolled)="onScrollDown()">
         <!-- Parcours des évènements d'un timeline -->
         <mgl-timeline-entry *ngFor="let entry of sortedArray; let i = index;" (expand)="onExpandEntry($event, i)">
@@ -45,8 +45,8 @@
           <!-- Affichage de la date de l'évènement-->
           <mgl-timeline-entry-side>
             <div class="date-display">
-              <div *ngIf="entry.beginDate">{{entry.beginDate | date:'mediumDate'}}</div>
-              <div *ngIf="entry.endDate"> to {{entry.endDate | date:'mediumDate'}}</div>
+              <div *ngIf="entry.from">{{entry.from | date:'mediumDate'}}</div>
+              <div *ngIf="entry.to"> to {{entry.to | date:'mediumDate'}}</div>
             </div>
           </mgl-timeline-entry-side>
 
@@ -59,4 +59,3 @@
     </mgl-timeline>
   </div>
 </div>
-<app-timeline-form></app-timeline-form>

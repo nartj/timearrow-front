@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Event} from '../model/event';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Event } from '../model/event';
+import { EventService } from '../services/event/event.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-timeline',
@@ -16,43 +17,32 @@ export class TimelineComponent implements OnInit {
   size = 40;
   expandEnabled = true;
   side = 'left';
-  /* */
 
   /* Evènement observé sur la Timeline */
   expandedIndex = -1;
   editedIndex = -2;
   sideToggled = false;
   stopPropagation = false;
-  repoEntries = [];
   offset = 0;
 
-  /* Passage de l'évènement à éditer à la Sidebar */
-  @Output() eventToEdit = new EventEmitter<Event>();
+  @Input() event: Event;
+  @Output() eventChange = new EventEmitter<Event>();
 
   /* Passage du composant graphique de dessin de la sidebar */
   @Input() drawer: any;
 
   /* Evènements de la Timeline */
-  entries = [new Event('Invention du TypeScript',
-    'TypeScript est un langage de programmation libre et open source développé par Microsoft qui a pour but d\'améliorer et de ' +
-    'sécuriser la production de code JavaScript. C\'est un sur-ensemble de JavaScript (c\'est-à-dire que tout code JavaScript correct ' +
-    'peut être utilisé avec TypeScript). Le code TypeScript est transcompilé en JavaScript, pouvant ainsi être interprété par n\'importe ' +
-    'quel navigateur web ou moteur JavaScript. Il a été cocréé par Anders Hejlsberg, principal inventeur de C#.',
-    'https://blog.cellenza.com/wp-content/uploads/2018/10/1-mn6bOs7s6Qbao15PMNRyOA-300x300.png',
-    'https://www.youtube.com/embed/n6RoVyZEsv4', 'content')];
+  entries: Event[] = [];
 
-  constructor() { }
+  constructor(private eventService: EventService, private route: ActivatedRoute) { }
 
-  ngOnInit() {
-    /* Event repository mock */
-    for (let i = 0; i < 200; i++) {
-      this.repoEntries.push(new Event(i, '', '', '', ''));
-    }
+  async ngOnInit() {
+    this.entries = await this.eventService.fetch(this.route.snapshot.paramMap.get('id') as any as number);
   }
 
   /* Fonction de tri des évènements par dates*/
   public get sortedArray(): Event[] {
-    this.entries = this.entries.sort((a, b) => new Date(a.beginDate).getTime() - new Date(b.beginDate).getTime());
+    this.entries = this.entries.sort((a, b) => new Date(a.from).getTime() - new Date(b.from).getTime());
     return this.entries;
   }
 
@@ -65,10 +55,13 @@ export class TimelineComponent implements OnInit {
   }
 
   /* Trigger pour fermer la sidebar */
-  closeSideBar() {
+  public async closeSideBar() {
     if (this.drawer._opened) {
       this.drawer.toggle();
       this.sideToggled = false;
+
+      let event = this.entries[this.editedIndex];
+      await this.eventService.save(event);
     }
   }
 
@@ -98,7 +91,7 @@ export class TimelineComponent implements OnInit {
     if (expanded) {
       this.expandedIndex = index;
       if (this.sideToggled) {
-        this.eventToEdit.emit(this.entries[index]);
+        this.eventChange.emit(this.entries[index]);
       }
     } else if (this.expandedIndex === index) {
       this.expandedIndex = null;
@@ -125,24 +118,16 @@ export class TimelineComponent implements OnInit {
     }
     // si un autre event est déjà en edition, editer le nouvel event selectionner
     if (this.expandedIndex !== index && this.sideToggled) {
-      this.eventToEdit.emit(this.entries[index]);
+      this.eventChange.emit(this.entries[index]);
       this.editedIndex = index;
     } else if (this.expandedIndex === index || !this.sideToggled) {
       this.openSideBar();
-      this.eventToEdit.emit(this.entries[index]);
+      this.eventChange.emit(this.entries[index]);
       this.editedIndex = index;
     }
   }
 
   /* Trigger de l'event scroll down */
   onScrollDown() {
-    const initialLength = this.entries.length;
-    if (initialLength <= this.repoEntries.length - 20) {
-      for (let i = initialLength; i < initialLength + 20; i++) {
-        /* Utilisation du repository mocké */
-        /* Sera remplacé par un call back-end pour query la page d'events suivantes */
-        this.entries.push(this.repoEntries[i]);
-      }
-    }
   }
 }

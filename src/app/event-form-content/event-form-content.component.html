@@ -1,11 +1,6 @@
 <!-- Formulaire de création du contenu d'un évènement -->
 <form class="example-form">
-  <mat-form-field class="example-full-width text-area-height">
-      <textarea matInput
-                placeholder="Description"
-                cdkTextareaAutosize
-                cdkAutosizeMinRows="10"
-                cdkAutosizeMaxRows="20"
-                value={{event.content}}></textarea>
-  </mat-form-field>
+  <p>
+    <app-ngx-editor [(ngModel)]="event.content" name="ngxeditor" (ngModelChange)="onContentChange()"></app-ngx-editor>
+  </p>
 </form>

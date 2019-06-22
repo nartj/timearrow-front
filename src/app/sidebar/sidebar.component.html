@@ -2,12 +2,12 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <div class="close-sidebar">
-      <button mat-button class="button-bar-item" (click)="timeline.closeSideBar(-1)">
+      <button mat-button class="button-bar-item" (click)="timeline.closeSideBar()">
         <mat-icon>close</mat-icon>
       </button>
     </div>
 
-    <app-event-form [event]="currentEvent"></app-event-form>
+    <app-event-form [(event)]="currentEvent"></app-event-form>
     <p *ngIf="showFiller"><app-event-form-content [event]="currentEvent"></app-event-form-content></p>
     <button (click)="showFiller = !showFiller" mat-raised-button>
       Ecrire du contenu
@@ -15,6 +15,6 @@
   </mat-drawer>
 
   <div class="example-sidenav-content">
-    <app-timeline #timeline [drawer]="drawer" (eventToEdit)="editSelectedEvent($event)" class="timeline"></app-timeline>
+    <app-timeline #timeline [drawer]="drawer" [(event)]="currentEvent" class="timeline"></app-timeline>
   </div>
 </mat-drawer-container>
